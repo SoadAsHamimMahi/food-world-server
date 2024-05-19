@@ -27,9 +27,14 @@ const client = new MongoClient(uri, {
       // Send a ping to confirm a successful connection
 
      const menuCollection = client.db('foodWorldDb').collection('menu');
+     const reviewCollection = client.db('foodWorldDb').collection('reviews');
 
      app.get('/menu', async (req, res) => {
         const result = await menuCollection.find().toArray();
+        res.send(result)
+     })
+     app.get('/review', async (req, res) => {
+        const result = await reviewCollection.find().toArray();
         res.send(result)
      })
 
